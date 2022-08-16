@@ -12,3 +12,16 @@ func Sum(expens ...float32) float32 {
 	}
 	return sum
 }
+
+func Max(expens ...float32) float32 {
+
+	var max float32
+
+	for _, expen := range expens {
+		if expen > max {
+			max = expen
+		}
+	}
+
+	return Sum(expens...) / float32(len(expens))
+}
