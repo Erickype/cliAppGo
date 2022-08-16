@@ -10,15 +10,18 @@ import (
 var reader *bufio.Reader = bufio.NewReader(os.Stdin)
 
 func GetInput() (string, error) {
-	fmt.Print("->")
+	fmt.Print("-> ")
 	str, err := reader.ReadString('\n')
 
 	if err != nil {
 		return "", err
 	}
-	/* 	Remove using len
-	   	str = str[0 : len(str)-2] */
+	/*Remove using len
+	str = str[0 : len(str)-2] */
 	//remove using strings
-	str = strings.Replace(str, "\n", "", 1)
+	str = strings.Replace(str, "\r\n", "", 1)
+	/* for i := 0; i < len(str); i++ {
+		fmt.Printf("Index: %d Value:%d \n", i, str[i])
+	} */
 	return str, nil
 }
