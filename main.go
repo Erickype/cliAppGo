@@ -24,7 +24,7 @@ func main() {
 
 		expense, err := strconv.ParseFloat(input, 32)
 		if err != nil {
-			log.Fatalln(err)
+			continue
 		}
 
 		expenses = append(expenses, float32(expense))
