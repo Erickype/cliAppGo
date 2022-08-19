@@ -29,23 +29,59 @@ func GetInput() (string, error) {
 }
 
 func ShowInConsole(expensesList []float32) {
+	fmt.Println(ContentString(expensesList))
+}
+
+func ContentString(expensesList []float32) string {
 	var builder = strings.Builder{}
+
+	max, min, average, sum := ExpensesDetails(expensesList)
 
 	fmt.Println("List of expenses")
 	for i, expense := range expensesList {
 		builder.WriteString(fmt.Sprintf("Expense: %6.2f\n", expense))
 		if i == len(expensesList)-1 {
 			fmt.Println("====================")
-			builder.WriteString(fmt.Sprintf("Total: %6.2f\n", expenses.Sum(expensesList...)))
-			builder.WriteString(fmt.Sprintf("Max: %6.2f\n", expenses.Max(expensesList...)))
-			builder.WriteString(fmt.Sprintf("Min: %6.2f\n", expenses.Min(expensesList...)))
-			builder.WriteString(fmt.Sprintf("Average: %6.2f\n", expenses.Average(expensesList...)))
+			builder.WriteString(fmt.Sprintf("Total: %6.2f\n", sum))
+			builder.WriteString(fmt.Sprintf("Max: %6.2f\n", max))
+			builder.WriteString(fmt.Sprintf("Min: %6.2f\n", min))
+			builder.WriteString(fmt.Sprintf("Average: %6.2f\n", average))
 		}
 	}
-
-	fmt.Println(builder.String())
+	return builder.String()
 }
 
-func Export() {
+func ExpensesDetails(expensesList []float32) (max, min, avg, sum float32) {
 
+	if len(expensesList) == 0 {
+		return
+	}
+
+	sum = expenses.Sum(expensesList...)
+	max = expenses.Max(expensesList...)
+	min = expenses.Min(expensesList...)
+	avg = expenses.Average(expensesList...)
+
+	return
+}
+
+func Export(fileName string, list []float32) error {
+
+	f, err := os.Create(fileName)
+
+	if err != nil {
+		return err
+	}
+
+	defer f.Close()
+
+	w := bufio.NewWriter(f)
+
+	_, err = w.WriteString(ContentString(list))
+
+	if err != nil {
+		return nil
+	}
+
+	return w.Flush()
 }

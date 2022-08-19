@@ -1,0 +1,9 @@
+Expense:   1.00
+Expense:   2.00
+Expense:   3.00
+Expense:   4.00
+Expense:   5.00
+Total:  15.00
+Max:   5.00
+Min:   1.00
+Average:   3.00

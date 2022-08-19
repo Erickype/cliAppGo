@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"strconv"
 
@@ -10,6 +11,9 @@ import (
 func main() {
 
 	var expenses []float32
+	var export string
+	flag.StringVar(&export, "export", "", "Exports details of expenses")
+	flag.Parse()
 
 	for {
 		input, err := commands.GetInput()
@@ -30,5 +34,11 @@ func main() {
 		expenses = append(expenses, float32(expense))
 	}
 
-	commands.ShowInConsole(expenses)
+	if export == "" {
+		commands.ShowInConsole(expenses)
+
+	} else {
+		commands.Export(export, expenses)
+	}
+
 }
