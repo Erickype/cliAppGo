@@ -23,7 +23,7 @@ func Max(expens ...float32) float32 {
 		}
 	}
 
-	return Sum(expens...) / float32(len(expens))
+	return max
 }
 
 func Min(expens ...float32) float32 {
@@ -40,5 +40,5 @@ func Min(expens ...float32) float32 {
 		}
 	}
 
-	return Sum(expens...) / float32(len(expens))
+	return min
 }
