@@ -25,3 +25,11 @@ func GetInput() (string, error) {
 	} */
 	return str, nil
 }
+
+func ShowInConsole(expenses []float32) {
+	var builder = strings.Builder{}
+
+	for _, expense := range expenses {
+		builder.WriteString(fmt.Sprintf("Expense: %6.2f\n", expense))
+	}
+}
