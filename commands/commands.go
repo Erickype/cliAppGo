@@ -32,4 +32,10 @@ func ShowInConsole(expenses []float32) {
 	for _, expense := range expenses {
 		builder.WriteString(fmt.Sprintf("Expense: %6.2f\n", expense))
 	}
+
+	fmt.Println(builder.String())
+}
+
+func Export() {
+
 }
